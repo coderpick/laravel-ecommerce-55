@@ -13763,10 +13763,10 @@ textarea.form-control-lg {
   color: #fff;
 }
 .app-menu__item.active, .app-menu__item:hover, .app-menu__item:focus {
-  background: #0d1214;
-  border-left-color: #00695C;
-  text-decoration: none;
-  color: #fff;
+    background: #009688;
+    border-left-color: #FF9800;
+    text-decoration: none;
+    color: #fff;
 }
 
 .app-menu__icon {

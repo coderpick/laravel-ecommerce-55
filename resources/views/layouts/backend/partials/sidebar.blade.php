@@ -8,17 +8,26 @@
         </div>
     </div>
     <ul class="app-menu">
+
         <li>
-            <a class="app-menu__item" href="{{ route('admin.dashboard') }}">
+            <a class="app-menu__item {{ Request::is('admin/dashboard')? 'active' :'' }}" href="{{ route('admin.dashboard') }}">
                 <i class="app-menu__icon bi bi-speedometer"></i>
                 <span class="app-menu__label">Dashboard</span>
             </a>
         </li>
 
          <li>
-            <a class="app-menu__item" href="{{ route('admin.category.index') }}">
+            <a class="app-menu__item {{ Request::is('admin/category*')? 'active' :'' }}" href="{{ route('admin.category.index') }}">
                 <i class="app-menu__icon bi-list-task"></i>
                 <span class="app-menu__label">Category</span>
+            </a>
+        </li>
+
+        
+         <li>
+            <a class="app-menu__item {{ Request::is('admin/sub_category*')? 'active' :'' }}" href="{{ route('admin.sub_category.index') }}">
+                <i class="app-menu__icon bi-list-task"></i>
+                <span class="app-menu__label">Sub Category</span>
             </a>
         </li>
 
