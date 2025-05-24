@@ -1,5 +1,5 @@
 @extends('layouts.backend.master')
-@section('title', 'Category Create')
+@section('title', 'Category Edit')
 @section('content')
     <div class="app-title">
         <div>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-md-6 text-end">
                             <div class="tile-title-w-btn">
-                                <a href="{{ route('admin.category.index') }}" class="btn btn-warning"><i
+                                <a href="{{ route('admin.sub_category.index') }}" class="btn btn-warning"><i
                                         class="bi bi-arrow-left"></i> Back to list</a>
                             </div>
                         </div>
@@ -31,13 +31,26 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('admin.category.update', $category->id) }}" method="post">
+                    <form action="{{ route('admin.sub_category.update', $subCategory->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="name">Category Name</label>
+                            <label for="category">Select Category</label>
+                            <select name="category" id="category" class="form-control">
+                                <option value="">Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option @selected($subCategory->category_id == $category->id) value="{{ $category->id }}">{{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="name">Sub Category Name</label>
                             <input type="text" name="name" id="name" class="form-control"
-                                value="{{ $category->name ?? old('name') }}">
+                                value="{{ $subCategory->name ?? old('name') }}">
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -45,7 +58,7 @@
                         <div class="mb-3">
                             <label for="slug">Slug </label>
                             <input type="text" name="slug" id="slug" class="form-control"
-                                value="{{ $category->slug ?? old('slug') }}">
+                                value="{{ $subCategory->slug ?? old('slug') }}">
                             @error('slug')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

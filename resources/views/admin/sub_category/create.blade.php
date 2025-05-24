@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-md-6 text-end">
                             <div class="tile-title-w-btn">
-                                <a href="{{ route('admin.category.index') }}" class="btn btn-warning"><i
+                                <a href="{{ route('admin.sub_category.index') }}" class="btn btn-warning"><i
                                         class="bi bi-arrow-left"></i> Back to list</a>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
 
                     <form action="{{ route('admin.sub_category.store') }}" method="post">
                         @csrf
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="category">Select Category</label>
                             <select name="category" id="category" class="form-control">
                                 <option value="">Select Category</option>

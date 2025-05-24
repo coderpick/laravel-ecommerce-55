@@ -7,6 +7,8 @@ use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubCategoryStoreRequest;
+use App\Http\Requests\SubCategoryUpdateRequest;
 
 class SubCategoryController extends Controller
 {
@@ -26,20 +28,14 @@ class SubCategoryController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('admin.sub_category.create',compact('categories'));
+        return view('admin.sub_category.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SubCategoryStoreRequest $request)
     {
-     
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:sub_categories',
-            'category' => 'required',
-        ]);
 
         SubCategory::create([
             'name' => $request->name,
@@ -63,15 +59,24 @@ class SubCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subCategory = SubCategory::findOrFail(base64_decode($id));
+        $categories = Category::get();
+        return view('admin.sub_category.edit', compact('subCategory', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SubCategoryUpdateRequest $request, string $id)
     {
-        //
+        $subCategory = SubCategory::findOrFail($id);
+        $subCategory->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->slug),
+            'category_id' => $request->category,
+        ]);
+        notyf()->success('Your sub category has been updated.');
+        return to_route('admin.sub_category.index');
     }
 
     /**
@@ -79,6 +84,9 @@ class SubCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $subCategory = SubCategory::findOrFail($id);
+        $subCategory->delete();
+        notyf()->success('Your sub category has been deleted.');
+        return to_route('admin.sub_category.index');
     }
 }

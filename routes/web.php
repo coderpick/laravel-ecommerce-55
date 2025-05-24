@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\SubCategoryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -27,6 +28,8 @@ Route::group(['middleware' => ['auth', 'admin', 'verified'], 'prefix' => 'admin'
     Route::resource('category', CategoryController::class);
 
     Route::resource('sub_category', SubCategoryController::class);
+
+    Route::resource('brand', BrandController::class);
     
 });
 

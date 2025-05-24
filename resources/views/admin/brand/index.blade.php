@@ -1,28 +1,28 @@
 @extends('layouts.backend.master')
-@section('title', 'Category')
+@section('title', 'Brand')
 @section('content')
     <div class="app-title">
         <div>
-            <h1><i class="bi bi-speedometer"></i> Sub Category</h1>
+            <h1><i class="bi bi-speedometer"></i> Brand</h1>
             <p>Start a beautiful journey here</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="bi bi-house-door fs-6"></i></li>
-            <li class="breadcrumb-item"><a href="#">Sub Category</a></li>
+            <li class="breadcrumb-item"><a href="#">Brand</a></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card ">
-                  <div class="card-header">
+                <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <h4 class="card-title mb-0"> Sub Category</h4>
+                            <h4 class="card-title mb-0"> Brand</h4>
                         </div>
                         <div class="col-md-6 text-end">
                             <div class="tile-title-w-btn">
-                                <a href="{{ route('admin.sub_category.create') }}" class="btn btn-primary"><i
-                                        class="bi bi-plus"></i> Create New </a>
+                                <a href="{{ route('admin.brand.create') }}" class="btn btn-primary"><i
+                                        class="bi bi-plus"></i> Create New Brand</a>
                             </div>
                         </div>
                     </div>
@@ -36,41 +36,50 @@
                                     <th>S.No</th>
                                     <th>Name</th>
                                     <th>Slug</th>
-                                    <th>Category</th>
+                                    <th>Logo</th>
                                     <th>Status</th>
+                                    <th>Created By</th>
                                     <th>Created at</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($subcategories as $key => $subcategory)
+                                @forelse ($brands as $key => $brand)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $subcategory->name }}</td>
-                                        <td>{{ $subcategory->slug }}</td>
-                                        <td>{{ $subcategory->category->name }}</td>
+                                        <td>{{ $brand->name }}</td>
+                                        <td>{{ $brand->slug }}</td>
                                         <td>
-                                           @if ( $subcategory->status ==true)
-                                               <span class="me-1 badge bg-primary">Active</span>
-                                               @else
-                                               <span class="me-1 badge bg-danger">Inactive</span>
-                                           @endif
+                                            <img src="{{ asset($brand->logo) }}" alt=""
+                                                style="width: 30px; height: 30px;">
                                         </td>
                                         <td>
-                                            {{ $subcategory->created_at->diffForHumans() }}
+                                            @if ($brand->status == true)
+                                                <span class="me-1 badge bg-primary">Active</span>
+                                            @else
+                                                <span class="me-1 badge bg-danger">Inactive</span>
+                                            @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.sub_category.edit', base64_encode($subcategory->id)) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                                            <form action="{{ route('admin.sub_category.destroy', $subcategory->id) }}" method="post" class="d-inline-block">
+                                            {{ $brand->createdBy?->name}}
+                                        </td>
+                                        <td>
+                                            {{ $brand->created_at->diffForHumans() }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-success"><i
+                                                    class="bi bi-pencil-square"></i></a>
+                                            <form action="{{ route('admin.brand.destroy', $brand->id) }}" method="post"
+                                                class="d-inline-block">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                                                <button type="submit" onclick="return confirm('Are you sure?')"
+                                                    class="btn btn-danger"><i class="bi bi-trash3"></i></button>
                                             </form>
-                                   
+
                                         </td>
                                     </tr>
                                 @empty
-                                    
                                 @endforelse
 
                             </tbody>
@@ -88,14 +97,12 @@
 
 @push('js')
     <!-- Data table plugin-->
-    <script type="text/javascript" src="{{ asset('assets/backend/js/plugins/dataTables.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/backend/js/plugins/dataTables.bootstrap5.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/backend/js/plugins/dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/backend/js/plugins/dataTables.bootstrap5.js') }}"></script>
 @endpush
 
 @push('custom_js')
     <script type="text/javascript">
-
         $('#sampleTable').DataTable();
-
     </script>
 @endpush
