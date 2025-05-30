@@ -156,7 +156,7 @@
                                     <label for="image" class="form-label">Product Images</label>
                                     <input type="file" name="images[]" id="image" multiple class="form-control"
                                         accept="image/*">
-                                    @error('image')
+                                    @error('images')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -220,12 +220,20 @@
 @push('custom_js')
     <script>
         $(document).ready(function() {
-            $('#name').on('keyup', function() {
+
+            function slugify(text) {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-') // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+                    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+                    .replace(/^-+/, '') // Trim - from start of text
+                    .replace(/-+$/, ''); // Trim - from end of text
+            }
+
+            $("#name").keyup(function() {
                 var Text = $(this).val();
-                Text = Text.toLowerCase();
-                Text = Text.replace(/[^\w]+/g, '-');
-                $('#slug').val(Text);
-            });
+                $("#slug").val(slugify(Text));
+            })
 
 
             /* summernote active */

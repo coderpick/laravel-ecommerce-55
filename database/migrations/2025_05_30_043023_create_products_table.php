@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->foreignId('sub_category_id')->constrained('sub_categories')->cascadeOnDelete();
+            $table->foreignId('sub_category_id')->nullable()->constrained('sub_categories')->cascadeOnDelete();
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('feature_image');
+            $table->string('feature_image')->nullable();
             $table->float('price');
             $table->integer('discount')->nullable();
             $table->float('discount_price')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->boolean('is_featured')->default(true);
             $table->boolean('status')->default(true);
             $table->timestamps();
-            //index 
+            // index
             $table->index(['slug', 'price']);
             $table->index('category_id');
             $table->index('sub_category_id');
@@ -47,14 +47,9 @@ return new class extends Migration
             $table->dropForeign(['category_id']);
             $table->dropForeign(['sub_category_id']);
             $table->dropForeign(['brand_id']);
-        });
-        // drop index 
-        Schema::table('products', function (Blueprint $table) {
             $table->dropIndex(['slug', 'price']);
-            $table->dropIndex('category_id');
-            $table->dropIndex('sub_category_id');
-            $table->dropIndex('brand_id');
         });
+
         Schema::dropIfExists('products');
     }
 };

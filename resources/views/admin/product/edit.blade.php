@@ -1,14 +1,14 @@
 @extends('layouts.backend.master')
-@section('title', 'Category Create')
+@section('title', 'Product Create')
 @section('content')
     <div class="app-title">
         <div>
-            <h1><i class="bi bi-speedometer"></i> Brand</h1>
+            <h1><i class="bi bi-speedometer"></i> Product</h1>
             <p>Start a beautiful journey here</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
             <li class="breadcrumb-item"><i class="bi bi-house-door fs-6"></i></li>
-            <li class="breadcrumb-item"><a href="#">Brand</a></li>
+            <li class="breadcrumb-item"><a href="#">Product</a></li>
         </ul>
     </div>
     <div class="row">
@@ -17,11 +17,11 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <h4 class="card-title mb-0">Edit Brand</h4>
+                            <h4 class="card-title mb-0">Add Product</h4>
                         </div>
                         <div class="col-md-6 text-end">
                             <div class="tile-title-w-btn">
-                                <a href="{{ route('admin.brand.index') }}" class="btn btn-warning"><i
+                                <a href="{{ route('admin.product.index') }}" class="btn btn-warning"><i
                                         class="bi bi-arrow-left"></i> Back to list</a>
                             </div>
                         </div>
@@ -31,56 +31,172 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('admin.brand.update', $brand->id) }}" method="post"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="row">
                             <div class="col-md-8">
+                                <h5>Product Information</h5>
+                                <hr>
                                 <div class="mb-3">
-                                    <label for="name">Brand Name</label>
-                                    <input type="text" name="name" id="name" class="form-control"
-                                        value="{{ $brand->name ?? old('name') }}">
+                                    <label for="name" class="form-label">Product Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" required
+                                        value="{{ old('name') }}">
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="slug">Slug </label>
-                                    <input type="text" name="slug" id="slug" class="form-control"
-                                        value="{{ $brand->slug ?? old('slug') }}">
+                                    <label for="slug" class="form-label">Slug </label>
+                                    <input type="text" name="slug" id="slug" class="form-control" required
+                                        value="{{ old('slug') }}">
                                     @error('slug')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label d-block">Status</label>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" @checked($brand->status == true)
-                                            name="status" id="inlineRadio1" value="1">
-                                        <label class="form-check-label" for="inlineRadio1">Active</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" @checked($brand->status == false)
-                                            name="status" id="inlineRadio2" value="0">
-                                        <label class="form-check-label" for="inlineRadio2">Inactive</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="logo">Brand Logo</label>
-                                    <input type="file" name="logo" id="logo" class="form-control dropify" data-default-file="{{ asset($brand->logo) }}">
-                                    @error('logo')
+                                    <label for="short_description" class="form-label">Short Description</label>
+                                    <textarea name="short_description" id="short_description" rows="4" class="form-control" required>{{ old('short_description') }}</textarea>
+                                    @error('short_description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                              
+
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea name="description" id="description" rows="6" class="form-control" required>{{ old('description') }}</textarea>
+                                    @error('description')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="price" class="form-label">Price</label>
+                                            <input type="number" name="price" id="price" min="0" required
+                                                class="form-control" value="{{ old('price') }}">
+                                            @error('price')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="quantity" class="form-label">Quantity</label>
+                                            <input type="number" name="quantity" min="0" id="quantity" required
+                                                class="form-control" value="{{ old('quantity') }}">
+                                            @error('quantity')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="discount" class="form-label">Discount</label>
+                                            <input type="number" name="discount" id="discount" min="0" disabled
+                                                class="form-control" value="{{ old('discount') }}">
+                                            @error('discount')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="discount_price" class="form-label">Discount Price</label>
+                                            <input type="number" name="discount_price" min="0" id="discount_price"
+                                                disabled class="form-control" value="{{ old('discount_price') }}">
+                                            @error('discount_price')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div> {{-- col-md-8 end --}}
+                            <div class="col-md-4">
+                                <h5>Category, Brand and Image</h5>
+                                <hr>
+                                <div class="mb-3">
+                                    <label class="form-label" for="category">Category</label>
+                                    <select name="category" id="category" class="form-control" required>
+                                        <option value="" disabled selected>Select Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="sub_category">Sub Category</label>
+                                    <select name="sub_category" id="sub_category" class="form-control">
+                                    </select>
+                                    @error('sub_category')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="brand">Select Brand</label>
+                                    <select name="brand" id="brand" class="form-control" required>
+                                        <option value="" disabled selected>Select Brand</option>
+                                        @foreach ($brands as $brand)
+                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('brand')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feature_image" class="form-label">Product Feature Image</label>
+                                    <input type="file" name="feature_image" id="feature_image" accept="image/*"
+                                        required class="form-control dropify">
+                                    @error('feature_image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Product Images</label>
+                                    <input type="file" name="images[]" id="image" multiple class="form-control"
+                                        accept="image/*">
+                                    @error('images')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Is Featured:</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_featured" id="yes"
+                                            required value="1">
+                                        <label class="form-check-label" for="yes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_featured" id="no"
+                                            value="0">
+                                        <label class="form-check-label" for="no">No</label>
+                                    </div>
+                                    @error('is_featured')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Status:</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="published"
+                                            required value="1">
+                                        <label class="form-check-label" for="published">Published</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="draft"
+                                            value="0">
+                                        <label class="form-check-label" for="draft">Draft</label>
+                                    </div>
+                                    @error('status')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
                         <div class="mb-3 text-center">
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i> Update</button>
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i> Save</button>
                         </div>
                     </form>
                 </div>
@@ -90,25 +206,101 @@
 @endsection
 @push('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/css/dropify.min.css">
+    <!-- include summernote css -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 @endpush
-
 
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @endpush
 
 @push('custom_js')
     <script>
         $(document).ready(function() {
-            $('#name').on('keyup', function() {
+
+            function slugify(text) {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-') // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+                    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+                    .replace(/^-+/, '') // Trim - from start of text
+                    .replace(/-+$/, ''); // Trim - from end of text
+            }
+
+            $("#name").keyup(function() {
                 var Text = $(this).val();
-                Text = Text.toLowerCase();
-                Text = Text.replace(/[^\w]+/g, '-');
-                $('#slug').val(Text);
+                $("#slug").val(slugify(Text));
+            })
+
+
+            /* summernote active */
+            $('#description').summernote({
+                placeholder: 'Write product description.....',
+                tabsize: 2,
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
             });
+            // dropify js active
+            $('.dropify').dropify();
         });
 
-        // dropify js active
-        $('.dropify').dropify();
+        $("#price").on('keyup', function() {
+            let price = $(this).val();
+            if (price > 0) {
+                $("#discount").attr('disabled', false);
+                $("#discount_price").attr('disabled', false);
+            } else {
+                $("#discount").attr('disabled', true).val('');
+                $("#discount_price").attr('disabled', true).val('');
+            }
+
+        })
+        /* discount calculate */
+        $("#discount").on('keyup', function() {
+            let discount = $(this).val();
+            let price = $("#price").val();
+            let total_price = (price - (price * discount / 100));
+            console.log(total_price);
+            $("#discount_price").val(total_price);
+        })
+
+        /* get sub category by category */
+        $("#category").on('change', function() {
+
+            let category_id = $(this).val();
+            $("#sub_category").html('');
+
+            $.ajax({
+                url: "{{ route('admin.getSubCategory') }}",
+                type: "POST",
+                data: {
+                    category_id: category_id,
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function(response) {
+
+                    if (response.status == false) {
+                        var notyf = new Notyf();
+                        notyf.error(response.message);
+                        return false;
+                    } else {
+                        var notyf = new Notyf();
+                        notyf.success('Sub Category Load!');
+                        $("#sub_category").html(response);
+                    }
+                }
+            })
+        })
     </script>
 @endpush

@@ -32,11 +32,11 @@ class ProductStoreRequest extends FormRequest
             'category' => 'required',
             'sub_category' => 'nullable',
             'brand' => 'required',
-            'feature_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:1024',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:1024',
+            'feature_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:1024',           
             'status' => 'required',
             'is_featured' => 'required',
-
+            'images' => 'nullable|array',
+            'images.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }
