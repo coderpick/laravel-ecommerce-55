@@ -89,4 +89,23 @@ class SubCategoryController extends Controller
         notyf()->success('Your sub category has been deleted.');
         return to_route('admin.sub_category.index');
     }
+
+    /* get sub category by ajax request */
+    public function getSubCategory(Request $request)
+    {
+        $subCategories = SubCategory::where('category_id', $request->category_id)->get();
+        if ($subCategories->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No Sub Category found'
+            ]);
+        }
+        $data = "<option value=''>Select Sub Category</option>";
+        foreach ($subCategories as $subCategory) {
+            $data .= "<option value='" . $subCategory->id . "'>" . $subCategory->name . "</option>";
+        }
+
+
+        return response()->json($data);
+    }
 }

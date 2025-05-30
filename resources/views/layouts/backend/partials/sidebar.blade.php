@@ -43,5 +43,13 @@
             </a>
         </li>
 
+        <li>
+            <a class="app-menu__item {{ Request::is('admin/product*') ? 'active' : '' }}"
+                href="{{ route('admin.product.index') }}">
+                <i class="app-menu__icon bi-list-task"></i>
+                <span class="app-menu__label">Products</span>
+            </a>
+        </li>
+
     </ul>
 </aside>
