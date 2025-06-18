@@ -23,7 +23,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.product.index');
+        $products = Product::with('category', 'subCategory', 'brand')->orderBy('id', 'desc')->get();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -88,12 +89,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::with('productImages', 'category', 'subCategory', 'brand')->findOrFail($id);
+        return view('admin.product.show', compact('product'));
     }
 
     public function edit(string $id)
     {
-        $product = Product::with('productImages')->findOrFail($id);
+        $product = Product::with('productImages', 'category', 'subCategory', 'brand')->findOrFail($id);
         $brands = Brand::get();
         $categories = Category::get();
         $subCategories = SubCategory::where('category_id', $product->category_id)->get();
@@ -106,7 +108,9 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, string $id)
     {
-        $product = Product::withTrashed()->findOrFail($id);
+
+      //  return $request;
+        $product = Product::findOrFail($id);
 
         if ($request->discount) {
             $discountPrice = $request->price - ($request->price * $request->discount) / 100;
@@ -123,15 +127,20 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount' => $request->discount ?? null,
             'discount_price' => $discountPrice ?? null,
-            'quantity' => $request->quantity,
+            'stock' => $request->quantity,
             'is_featured' => $request->is_featured,
             'status' => $request->is_featured,
         ]);
 
+        if ($request->hasFile('feature_image')) {
+            $feature_image = $this->upload($request->file('feature_image'), 'uploads/product/feature', 600, 750, $product->feature_image);
+            $product->update(['feature_image' => $feature_image]);
+            $product->save();
+        }
+
         $imageData = [];
 
         if ($files = $request->file('images')) {
-
             foreach ($files as $key => $file) {
                 $path = $this->upload($file, 'uploads/product/gallery', 600, 750);
                 $imageData[] = [
@@ -140,7 +149,7 @@ class ProductController extends Controller
                 ];
             }
         }
-
+      
         if ($files = $request->file('images')) {
             $productImages = ProductImage::where('product_id', $product->id)->get();
             foreach ($productImages as $key => $value) {
@@ -165,7 +174,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Product::with('productImages')->withTrashed()->findOrFail($id);
+        $product = Product::with('productImages')->findOrFail($id);
 
         if (count($product->productImages) > 0) {
 

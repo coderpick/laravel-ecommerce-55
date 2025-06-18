@@ -17,7 +17,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <h4 class="card-title mb-0"> Product</h4>
+                            <h4 class="card-title mb-0">Products</h4>
                         </div>
                         <div class="col-md-6 text-end">
                             <div class="tile-title-w-btn">
@@ -33,54 +33,63 @@
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>
-                                    <th>S.No</th>
+                                    <th>#</th>
+                                    <th>Image</th>
                                     <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Logo</th>
-                                    <th>Status</th>
-                                    <th>Created By</th>
-                                    <th>Created at</th>
+                                    <th>Category</th>
+                                    <th>Brand</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Is Feature</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @forelse ($brands as $key => $brand)
+                                @forelse ($products as $key => $product)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $brand->name }}</td>
-                                        <td>{{ $brand->slug }}</td>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>
-                                            <img src="{{ asset($brand->logo) }}" alt=""
-                                                style="width: 30px; height: 30px;">
+                                            <img src="{{ asset($product->feature_image) }}" loading="lazy" width="50"
+                                                alt="">
                                         </td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->category?->name }}</td>
+                                        <td>{{ $product->brand?->name }}</td>
                                         <td>
-                                            @if ($brand->status == true)
-                                                <span class="me-1 badge bg-primary">Active</span>
+                                            @if ($product->discount > 0 && $product->discount_price != null)
+                                            {{ $product->discount_price }}Tk. <br> <del>{{ $product->price }}Tk</del>({{ $product->discount }}% off)
                                             @else
-                                                <span class="me-1 badge bg-danger">Inactive</span>
+                                                {{ $product->price }}Tk.
                                             @endif
                                         </td>
+                                        <td>{{ $product->stock }}</td>
                                         <td>
-                                            {{ $brand->createdBy?->name}}
+                                            @if ($product->is_featured == true)
+                                                <span class="me-1 badge bg-primary">Featured</span>
+                                            @else
+                                                <span class="me-1 badge bg-danger">Not Featured</span>
+                                            @endif
                                         </td>
-                                        <td>
-                                            {{ $brand->created_at->diffForHumans() }}
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-success"><i
-                                                    class="bi bi-pencil-square"></i></a>
-                                            <form action="{{ route('admin.brand.destroy', $brand->id) }}" method="post"
-                                                class="d-inline-block">
+                                        <td class="text-center">
+
+                                            <a href="{{ route('admin.product.show', $product->id) }}"
+                                                class="btn btn-info"><i class="bi bi-eye"></i>
+                                            </a>
+
+                                            <a href="{{ route('admin.product.edit', $product->id) }}"
+                                                class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+
+                                            <form action="{{ route('admin.product.destroy', $product->id) }}"
+                                                method="post" class="d-inline-block">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Are you sure?')"
                                                     class="btn btn-danger"><i class="bi bi-trash3"></i></button>
                                             </form>
-
                                         </td>
                                     </tr>
                                 @empty
-                                @endforelse --}}
+                                @endforelse
 
                             </tbody>
                         </table>

@@ -23,7 +23,7 @@ class ProductStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'slug' => 'required|unique:products',
+            'slug' => 'required|unique:products,slug',
             'short_description' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
@@ -32,11 +32,11 @@ class ProductStoreRequest extends FormRequest
             'category' => 'required',
             'sub_category' => 'nullable',
             'brand' => 'required',
-            'feature_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:1024',           
+            'feature_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:1024',
             'status' => 'required',
             'is_featured' => 'required',
             'images' => 'nullable|array',
-            'images.*' => 'mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'mimes:jpeg,png,jpg,webp,svg|max:2048',
         ];
     }
 }
