@@ -1,46 +1,15 @@
- <!-- Meta Tag -->
- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name='copyright' content=''>
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- <!-- Title Tag  -->
- <title>Eshop</title>
- <!-- Favicon -->
- <link rel="icon" type="image/png" href="images/favicon.png">
- <!-- Web Font -->
- <link
-     href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-     rel="stylesheet">
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>@yield('title'):: Shop Grid</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
 
- <!-- StyleSheet -->
-
- <!-- Bootstrap -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.css') }}">
- <!-- Magnific Popup -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.min.css') }}">
- <!-- Font Awesome -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/font-awesome.css') }}">
- <!-- Fancybox -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery.fancybox.min.css') }}">
- <!-- Themify Icons -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/themify-icons.css') }}">
- <!-- Nice Select CSS -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/niceselect.css') }}">
- <!-- Animate CSS -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/animate.css') }}">
- <!-- Flex Slider CSS -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/flex-slider.min.css') }}">
- <!-- Owl Carousel -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl-carousel.css') }}">
- <!-- Slicknav -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/slicknav.min.css') }}">
-
- <!-- Eshop StyleSheet -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/reset.css') }}">
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
-
- <!-- Color CSS -->
- <link rel="stylesheet" href="{{ asset('assets/frontend/css/color/color1.css') }}">
- <link rel="stylesheet" href="{{ asset('assets/frontend/index.html#" id="colors') }}">
+<!-- ========================= CSS here ========================= -->
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/LineIcons.3.0.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/tiny-slider.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/glightbox.min.css') }}" />
+@stack('css')
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}" />
+@stack('custom_css')

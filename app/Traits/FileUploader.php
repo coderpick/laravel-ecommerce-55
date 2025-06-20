@@ -22,7 +22,7 @@ trait FileUploader
             $imgDriver = new ImageManager(new Driver);
             $image = $imgDriver->read($file);
             $image->cover($width, $height);
-            $image->toWebp();
+            $image->toWebp(90);
 
             $file_full_name = $file_name.'.webp';
             $file_path = $location.'/'.$file_full_name;

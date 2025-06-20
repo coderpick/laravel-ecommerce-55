@@ -57,7 +57,8 @@
                                         <td>{{ $product->brand?->name }}</td>
                                         <td>
                                             @if ($product->discount > 0 && $product->discount_price != null)
-                                            {{ $product->discount_price }}Tk. <br> <del>{{ $product->price }}Tk</del>({{ $product->discount }}% off)
+                                                {{ $product->discount_price }}Tk. ({{ $product->discount }}% off)
+                                                <br> <del>{{ $product->price }}Tk</del>
                                             @else
                                                 {{ $product->price }}Tk.
                                             @endif
