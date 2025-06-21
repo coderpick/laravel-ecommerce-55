@@ -11,17 +11,17 @@
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <div class="single-slider" style="background-image: url(assets/images/hero/banner-4.png);">
-                                <!-- <div class="content">
-                                                                                                <h2><span>No restocking fee ($35 savings)</span>
-                                                                                                    M75 Sport Watch
-                                                                                                </h2>
-                                                                                                <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut
-                                                                                                    labore dolore magna aliqua.</p>
-                                                                                                <h3><span>Now Only</span> $320.99</h3>
-                                                                                                <div class="button">
-                                                                                                    <a href="product-grids.html" class="btn">Shop Now</a>
-                                                                                                </div>
-                                                                                            </div> -->
+                                <div class="content">
+                                    <h2><span>No restocking fee ($35 savings)</span>
+                                        M75 Sport Watch
+                                    </h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut
+                                        labore dolore magna aliqua.</p>
+                                    <h3><span>Now Only</span> $320.99</h3>
+                                    <div class="button">
+                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                    </div>
+                                </div>
                             </div>
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
