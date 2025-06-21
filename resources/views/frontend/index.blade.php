@@ -9,13 +9,16 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{ asset('assets/frontend/images/hero/slider-img-1.jpg') }}" class="d-block w-100" alt="...">
+                                <img src="{{ asset('assets/frontend/images/hero/slider-img-1.jpg') }}" class="d-block w-100"
+                                    alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('assets/frontend/images/hero/slider-img-2.jpg') }}" class="d-block w-100" alt="...">
+                                <img src="{{ asset('assets/frontend/images/hero/slider-img-2.jpg') }}" class="d-block w-100"
+                                    alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset('assets/frontend/images/hero/slider-img-3.jpg') }}" class="d-block w-100" alt="...">
+                                <img src="{{ asset('assets/frontend/images/hero/slider-img-3.jpg') }}" class="d-block w-100"
+                                    alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -170,7 +173,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('assets/images/banner/banner-1-bg.jpg')">
+                    <div class="single-banner"
+                        style="background-image:url({{ asset('assets/frontend/images/banner/banner-1-bg.jpg') }})">
                         <div class="content">
                             <h2>Smart Watch 2.0</h2>
                             <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
@@ -182,7 +186,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="single-banner custom-responsive-margin"
-                        style="background-image:url('assets/images/banner/banner-2-bg.jpg')">
+                        style="background-image:url({{ asset('assets/frontend/images/banner/banner-2-bg.jpg') }})">
                         <div class="content">
                             <h2>Smart Headphone</h2>
                             <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
@@ -217,7 +221,7 @@
                             <!-- Start Single Product -->
                             <div class="single-product">
                                 <div class="product-image">
-                                    <img src="assets/images/products/product-3.jpg" alt="#">
+                                    <img src="assets/frontend/images/products/product-3.jpg" alt="#">
                                     <div class="button">
                                         <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
                                             Cart</a>
@@ -247,7 +251,7 @@
                             <!-- Start Single Product -->
                             <div class="single-product">
                                 <div class="product-image">
-                                    <img src="assets/images/products/product-8.jpg" alt="#">
+                                    <img src="assets/frontend/images/products/product-8.jpg" alt="#">
                                     <div class="button">
                                         <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
                                             Cart</a>
@@ -277,7 +281,7 @@
                             <!-- Start Single Product -->
                             <div class="single-product">
                                 <div class="product-image">
-                                    <img src="assets/images/products/product-6.jpg" alt="#">
+                                    <img src="assets/frontend/images/products/product-6.jpg" alt="#">
                                     <div class="button">
                                         <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
                                             Cart</a>
@@ -324,7 +328,7 @@
                 <div class="col-lg-4 col-md-12 col-12">
                     <div class="offer-content">
                         <div class="image">
-                            <img src="assets/images/offer/offer-image.jpg" alt="#">
+                            <img src="assets/frontend/images/offer/offer-image.jpg" alt="#">
                             <span class="sale-tag">-50%</span>
                         </div>
                         <div class="text">
@@ -381,7 +385,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/01.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/01.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -395,7 +399,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/02.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/02.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -409,7 +413,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/03.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/03.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -426,7 +430,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/04.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/04.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -440,7 +444,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/05.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/05.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -454,7 +458,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/06.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/06.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -471,7 +475,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/07.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/07.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -485,7 +489,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/08.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/08.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -499,7 +503,7 @@
                     <!-- Start Single List -->
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="assets/images/home-product-list/09.jpg"
+                            <a href="product-grids.html"><img src="assets/frontend/images/home-product-list/09.jpg"
                                     alt="#"></a>
                         </div>
                         <div class="list-info">
@@ -538,7 +542,7 @@
                     <div class="single-blog">
                         <div class="blog-img">
                             <a href="blog-single-sidebar.html">
-                                <img src="assets/images/blog/blog-1.jpg" alt="#">
+                                <img src="assets/frontend/images/blog/blog-1.jpg" alt="#">
                             </a>
                         </div>
                         <div class="blog-content">
@@ -560,7 +564,7 @@
                     <div class="single-blog">
                         <div class="blog-img">
                             <a href="blog-single-sidebar.html">
-                                <img src="assets/images/blog/blog-2.jpg" alt="#">
+                                <img src="assets/frontend/images/blog/blog-2.jpg" alt="#">
                             </a>
                         </div>
                         <div class="blog-content">
@@ -582,7 +586,7 @@
                     <div class="single-blog">
                         <div class="blog-img">
                             <a href="blog-single-sidebar.html">
-                                <img src="assets/images/blog/blog-3.jpg" alt="#">
+                                <img src="assets/frontend/images/blog/blog-3.jpg" alt="#">
                             </a>
                         </div>
                         <div class="blog-content">
