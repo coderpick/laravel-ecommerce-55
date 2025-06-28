@@ -27,6 +27,7 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
                     <form class="card login-form" action="{{ route('login') }}" method="post">
+                        @csrf
                         <div class="card-body">
                             <div class="title">
                                 <h3>Login Now</h3>
@@ -50,7 +51,7 @@
                             </div>
                             <div class="form-group input-group">
                                 <label for="reg-fn">Email</label>
-                                <input class="form-control" type="email" name="email" id="reg-email" required>
+                                <input class="form-control" type="email" name="email" id="reg-email" >
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

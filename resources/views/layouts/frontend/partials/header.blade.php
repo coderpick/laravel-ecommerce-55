@@ -45,18 +45,27 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-end">
-                        <div class="user">
-                            <i class="lni lni-user"></i>
-                            Hello
-                        </div>
-                        <ul class="user-login">
-                            <li>
-                                <a href="{{ route('login') }}">Sign In</a>
-                            </li>
-                            <li>
-                                <a href="register.html">Register</a>
-                            </li>
-                        </ul>
+                        @guest
+                            <ul class="user-login">
+                                <li>
+                                    <a href="{{ route('login') }}">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('register') }}">Register</a>
+                                </li>
+                            </ul>
+                        @else
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                {{ auth()->user()->name }}
+                            </div>
+                            |
+                            <ul class="user-login">
+                                <li>
+                                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                                </li>
+                            </ul>
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -124,9 +133,10 @@
                                 </a>
                                 <!-- Shopping Item -->
                                 <div class="shopping-item">
+
                                     <div class="dropdown-cart-header">
                                         <span>2 Items</span>
-                                        <a href="cart.html">View Cart</a>
+                                        <a href="{{ route('cart.index') }}">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <li>
@@ -134,7 +144,7 @@
                                                     class="lni lni-close"></i></a>
                                             <div class="cart-img-head">
                                                 <a class="cart-img" href="product-details.html"><img
-                                                        src="assets/images/header/cart-items/item1.jpg"
+                                                        src="assets/frontend/images/header/cart-items/item1.jpg"
                                                         alt="#"></a>
                                             </div>
 
@@ -149,7 +159,7 @@
                                                     class="lni lni-close"></i></a>
                                             <div class="cart-img-head">
                                                 <a class="cart-img" href="product-details.html"><img
-                                                        src="assets/images/header/cart-items/item2.jpg"
+                                                        src="assets/frontend/images/header/cart-items/item2.jpg"
                                                         alt="#"></a>
                                             </div>
                                             <div class="content">

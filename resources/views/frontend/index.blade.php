@@ -128,7 +128,14 @@
                             <div class="product-image">
                                 <img src="{{ asset($product->feature_image) }}" alt="#">
                                 <div class="button">
-                                    <a href="" class="btn"><i class="lni lni-cart"></i> Add to
+                                    <form action="{{ route('cart.store') }}" method="post" class="d-none"
+                                        id="form-{{ $product->id }}">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                                    </form>
+                                    <a href="" data-id="{{ $product->id }}" class="btn btn-cart"><i
+                                            class="lni lni-cart"></i> Add to
                                         Cart</a>
                                 </div>
                             </div>
@@ -658,3 +665,19 @@
     </section>
     <!-- End Shipping Info -->
 @endsection
+@push('js')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+@endpush
+@push('custom_js')
+    <script>
+        $(document).ready(function() {
+            $('.btn-cart').click(function(event) {
+                event.preventDefault();
+                let productId = $(this).data('id');
+                console.log(productId);
+                $('#form-' + productId).submit();
+            });
+        });
+    </script>
+@endpush
